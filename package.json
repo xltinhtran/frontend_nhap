@@ -1,0 +1,25 @@
+{
+  "name": "quizlet-app",
+  "version": "1.0.0",
+  "description": "A desktop Quizlet clone built with Electron for creating and studying flashcards",
+  "main": "main.js",
+  "homepage": "https://github.com/elitheowl/Quizlet-Learn-Dupe",
+  "author": "elitheowl",
+  "license": "ISC",
+  "keywords": ["electron", "quizlet", "flashcards", "study", "education"],
+  "scripts": {
+    "start": "electron .",
+    "dev": "set NODE_ENV=development && electron .",
+    "build": "electron-packager . quizlet-app --platform=win32 --arch=x64 --out=dist/ --overwrite --prune=true",
+    "build:win": "electron-packager . quizlet-app --platform=win32 --arch=x64 --out=dist/ --overwrite --prune=true",
+    "build:win32": "electron-packager . quizlet-app --platform=win32 --arch=ia32 --out=dist/ --overwrite --prune=true",
+    "build:win64": "electron-packager . quizlet-app --platform=win32 --arch=x64 --out=dist/ --overwrite --prune=true",
+    "dist": "npm run build:win",
+    "pack": "electron-packager . quizlet-app --dir",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "electron": "^37.3.1",
+    "electron-packager": "^17.1.2"
+  }
+}

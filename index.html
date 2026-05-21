@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudySet - A Quizlet Clone</title>
+    <meta name="description" content="Create and master your flashcards with SM-2 spaced repetition" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/style.css">
+  </head>
+ 
+  <body class="bg-slate-50 text-slate-800 min-h-screen">
+    
+    <div id="app-root"></div>
+
+    <script type="module">
+        async function loadAllComponents() {
+            const root = document.getElementById('app-root');
+            // Cài sẵn đường dẫn đi móc 4 cục HTML ở trên
+            const components = [
+                'components/home.html',
+                'components/set-view.html',
+                'components/learn-mode.html',
+                'components/modals.html'
+            ];
+
+            try {
+                // Tải song song 1 lúc 4 file cho lẹ
+                const contents = await Promise.all(
+                    components.map(path => fetch(path).then(res => res.text()))
+                );
+                
+                // Trét vào giao diện
+                root.innerHTML = contents.join('');
+
+                // 🔥 LỆNH BÀI CHỐT TỬ: Giao diện nạp xong 100% thì mới chạy app.js
+                const script = document.createElement('script');
+                script.type = 'module';
+                script.src = 'src/app.js';
+                document.body.appendChild(script);
+
+            } catch (err) {
+                console.error("Lỗi nạp file HTML:", err);
+                alert("Ông coi lại thư mục components có viết sai chính tả không nhé!");
+            }
+        }
+        
+        // Vừa vào trang là kích hoạt chạy liền
+        window.addEventListener('DOMContentLoaded', loadAllComponents);
+    </script>
+  </body>
+</html>
